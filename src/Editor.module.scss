@@ -1,0 +1,148 @@
+@use "sass:color";
+
+$background-color: rgb(40, 35, 54);
+$color: #fff;
+
+$code-background-color: #000;
+$code-color: #cfcfcf;
+$code-font: monospace;
+
+$accent: rgb(255, 126, 219);
+$highlight: color.change($accent, $alpha: 0.2);
+$seperator: $highlight;
+$selected: $highlight;
+
+:root {
+  --rew-background-color: #{$background-color};
+  --rew-color: #{$color};
+
+  --rew-inline-code-background-color: #{$code-background-color};
+  --rew-inline-code-color: #{$code-color};
+  --rew-inline-code-font: #{$code-font};
+
+  --rew-code-background-color: #{$code-background-color};
+  --rew-code-color: #{$code-color};
+  --rew-code-font: #{$code-font};
+
+  --rew-accent: #{$accent};
+  --rew-seperator: #{$seperator};
+  --rew-highlight: #{$highlight};
+
+  --rew-selected: #{$selected};
+}
+
+.container {
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  border: 2px solid var(--rew-accent);
+  background-color: var(--rew-background-color);
+  color: var(--rew-color);
+}
+
+.menu {
+  display: flex;
+  // height: 2.5rem;
+  padding: 0.25rem;
+  border-bottom: 2px solid var(--rew-accent);
+  align-items: center;
+
+  div {
+    display: flex;
+    &:not(:first-child) {
+      margin-left: 1rem;
+    }
+
+    button {
+      border-style: none;
+      box-shadow: none;
+      -webkit-appearance: none;
+      display: inline-block;
+      background: none;
+      color: var(--rew-color);
+      font-size: 110%;
+
+      aspect-ratio: 1/1;
+      height: 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:not(:first-child) {
+        border-left: 1px solid var(--rew-seperator);
+      }
+
+      &.active {
+        background-color: var(--rew-selected);
+      }
+    }
+  }
+}
+
+.wrapper {
+  :global .ProseMirror {
+    &:focus {
+      outline: none;
+    }
+    padding: 1rem;
+
+    > * + * {
+      margin-top: 0.75em;
+    }
+    ul,
+    ol {
+      padding: 0 1rem;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      line-height: 1.1;
+    }
+
+    code {
+      background-color: var(--rew-code-background-color);
+      color: var(--rew-code-color);
+    }
+
+    pre {
+      background: var(---rew-code-background-color);
+      color: var(--rew-code-color);
+      font-family: var(--rew-code-font);
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+
+      code {
+        font-family: inherit;
+        color: inherit;
+        padding: 0;
+        background: none;
+        font-size: 0.8rem;
+      }
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    blockquote {
+      padding-left: 1rem;
+      border-left: 2px solid var(--rew-highlight);
+    }
+
+    hr {
+      border: none;
+      border-top: 2px solid var(--rew-color);
+      margin: 2rem 0;
+    }
+  }
+}
+
+.buttonBox {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
