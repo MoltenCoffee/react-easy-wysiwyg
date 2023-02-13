@@ -14,6 +14,7 @@ const Editor = ({
   onSave,
   exportHTML = false,
   editable = true,
+  inheritStyles = true,
   buttons = {},
 }) => {
   const editor = useEditor({

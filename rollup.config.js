@@ -1,6 +1,5 @@
 import { swc } from "rollup-plugin-swc3";
 import postcss from "rollup-plugin-postcss";
-import peerDepsExternal from "rollup-plugin-peer-deps-external";
 
 const config = {
   input: "src/index.js",
@@ -10,8 +9,18 @@ const config = {
     format: "esm",
     // preserveModules: true,
   },
+  external: [
+    "react",
+    "react-dom",
+    "tiptap-unique-id",
+    "@tiptap/extension-link",
+    "@tiptap/extension-underline",
+    "@tiptap/react",
+    "@tiptap/starter-kit",
+    "lucide-react",
+    "react/jsx-runtime"
+  ],
   plugins: [
-    peerDepsExternal(),
     postcss({
       extract: "styles.css",
       modules: true,

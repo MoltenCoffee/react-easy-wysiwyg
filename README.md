@@ -2,9 +2,17 @@
 
 A simple, convenient frontend for [tiptap](https://tiptap.dev/), which itself builts upon [ProseMirror](https://prosemirror.net/).
 
+Icons from [Lucide icons](https://lucide.dev/).
+
+![screenshot from the React-easy-wysiwyg demo](demo.png)
+
 ## Why?
 
 Tiptap, by design, only provides the barebones tools to built a text editor. For my personal website I built a wrapper, and decided I might as well release it for others to use.
+
+## Demo
+
+To view the demo, clone the repo, run `npm i` to install dependencies and then run `npm run demo`.
 
 ## Usage
 
@@ -15,7 +23,8 @@ Tiptap, by design, only provides the barebones tools to built a text editor. For
 ```jsx
 import Editor from "react-easy-wysiwyg";
 
-import "react-easy-wysiwyg/styles";
+// Assuming you can import CSS directly, like with Vite, CRA or Next.js
+import "react-easy-wysiwyg/styles.css";
 
 const App = () => {
 
@@ -25,6 +34,10 @@ const App = () => {
   </>)
 }
 ```
+
+### Next.js
+
+If using the `app` directory, available in Next.js 13, you'll need to [mark it's parent as a Client Component](https://beta.nextjs.org/docs/rendering/server-and-client-components#convention).
 
 ### Customizing
 
@@ -74,6 +87,8 @@ The module is built using [CSS Modules](https://github.com/css-modules/css-modul
   /* The <div> wrapping the content-editable <div> rendered by tiptap */
 }
 ```
+
+On top of this, the `.ProseMirror` class can be used for styling the content itself. By default, your 'normal' styles are inherited.
 
 #### Buttons
 
