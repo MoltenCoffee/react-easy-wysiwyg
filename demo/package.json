@@ -1,13 +1,13 @@
 {
   "type": "module",
   "scripts": {
+    "predemo": "node scripts/validate.mjs",
     "demo": "vite"
   },
   "dependencies": {
     "endent": "^2.1.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-easy-wysiwyg": "^1.0.3"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^3.1.0",

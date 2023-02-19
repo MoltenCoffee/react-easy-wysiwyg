@@ -1,16 +1,30 @@
 @use "sass:color";
 
-$background-color: rgb(40, 35, 54);
-$color: #fff;
+// Default
+$background-color: #fff;
+$color: #000;
 
-$code-background-color: #000;
+$code-background-color: rgb(70, 70, 70);
 $code-color: #cfcfcf;
 $code-font: monospace;
 
-$accent: rgb(255, 126, 219);
+$accent: rgb(157, 157, 157);
 $highlight: color.change($accent, $alpha: 0.2);
 $seperator: $highlight;
 $selected: $highlight;
+
+// Dark mode
+$dark-background-color: #1b1b1b;
+$dark-color: #fff;
+
+$dark-code-background-color: rgb(183, 183, 183);
+$dark-code-color: #1a1a1a;
+$dark-code-font: monospace;
+
+$dark-accent: rgb(230, 230, 230);
+$dark-highlight: color.change($accent, $alpha: 0.2);
+$dark-seperator: $highlight;
+$dark-selected: $highlight;
 
 :root {
   --rew-background-color: #{$background-color};
@@ -29,6 +43,27 @@ $selected: $highlight;
   --rew-highlight: #{$highlight};
 
   --rew-selected: #{$selected};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --rew-background-color: #{$dark-background-color};
+    --rew-color: #{$dark-color};
+
+    --rew-inline-code-background-color: #{$dark-code-background-color};
+    --rew-inline-code-color: #{$dark-code-color};
+    --rew-inline-code-font: #{$dark-code-font};
+
+    --rew-code-background-color: #{$dark-code-background-color};
+    --rew-code-color: #{$dark-code-color};
+    --rew-code-font: #{$dark-code-font};
+
+    --rew-accent: #{$dark-accent};
+    --rew-seperator: #{$dark-seperator};
+    --rew-highlight: #{$dark-highlight};
+
+    --rew-selected: #{$dark-selected};
+  }
 }
 
 .container {
@@ -74,6 +109,10 @@ $selected: $highlight;
       &.active {
         background-color: var(--rew-selected);
       }
+    }
+
+    &:empty {
+      display: none;
     }
   }
 }

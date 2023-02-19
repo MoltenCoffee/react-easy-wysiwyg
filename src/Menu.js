@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import {
   Bold,
   Code,
@@ -26,6 +26,31 @@ import {
 
 import styles from "./Editor.module.scss";
 
+const defaultButtons = {
+  bold: <Bold />,
+  italic: <Italic />,
+  underline: <Underline />,
+  strikethrough: <Strikethrough />,
+  code: <Code />,
+  link: <Link />,
+  unlink: <Unlink />,
+  heading1: <Heading1 />,
+  heading2: <Heading2 />,
+  heading3: <Heading3 />,
+  heading4: <Heading4 />,
+  heading5: <Heading5 />,
+  heading6: <Heading6 />,
+  bulletList: <List />,
+  orderedList: <ListOrdered />,
+  codeBlock: <Code2 />,
+  blockquote: <Quote />,
+  // paragraph: <Pillcrow />,
+  horizontalRule: <Minus />,
+  undo: <Undo />,
+  redo: <Redo />,
+  save: <Save />,
+};
+
 const Menu = ({ editor, buttons = {}, handleSave, ...rest }) => {
   const setLink = useCallback(() => {
     const previousUrl = editor.getAttributes("link").href;
@@ -44,175 +69,213 @@ const Menu = ({ editor, buttons = {}, handleSave, ...rest }) => {
     editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
   }, [editor]);
 
+  const realButtons = useMemo(
+    () => ({ ...defaultButtons, ...buttons }),
+    [buttons]
+  );
+
   return editor ? (
     <div className={`${styles.menu} rew-menu`} {...rest}>
       <div>
-        <button onClick={() => editor.chain().focus().toggleBold().run()}>
-          {buttons.bold || <Bold />}
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleItalic().run()}
-          disabled={!editor.can().chain().focus().toggleItalic().run()}
-          className={editor.isActive("italic") ? styles.active : ""}
-        >
-          {buttons.italic || <Italic />}
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleUnderline().run()}
-          className={editor.isActive("underline") ? styles.active : ""}
-        >
-          {buttons.underline || <Underline />}
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleStrike().run()}
-          disabled={!editor.can().chain().focus().toggleStrike().run()}
-          className={editor.isActive("strike") ? styles.active : ""}
-        >
-          {buttons.strikethrough || <Strikethrough />}
-        </button>
+        {!!realButtons.bold && (
+          <button onClick={() => editor.chain().focus().toggleBold().run()}>
+            {realButtons.bold}
+          </button>
+        )}
+        {!!realButtons.italic && (
+          <button
+            onClick={() => editor.chain().focus().toggleItalic().run()}
+            disabled={!editor.can().chain().focus().toggleItalic().run()}
+            className={editor.isActive("italic") ? styles.active : ""}
+          >
+            {realButtons.italic}
+          </button>
+        )}
+        {!!realButtons.underline && (
+          <button
+            onClick={() => editor.chain().focus().toggleUnderline().run()}
+            className={editor.isActive("underline") ? styles.active : ""}
+          >
+            {realButtons.underline}
+          </button>
+        )}
+        {!!realButtons.strikethrough && (
+          <button
+            onClick={() => editor.chain().focus().toggleStrike().run()}
+            disabled={!editor.can().chain().focus().toggleStrike().run()}
+            className={editor.isActive("strike") ? styles.active : ""}
+          >
+            {realButtons.strikethrough}
+          </button>
+        )}
         <button
           onClick={() => editor.chain().focus().toggleCode().run()}
           disabled={!editor.can().chain().focus().toggleCode().run()}
           className={editor.isActive("code") ? styles.active : ""}
         >
-          {buttons.code || <Code />}
+          {realButtons.code}
         </button>
         <button
           onClick={setLink}
           className={editor.isActive("link") ? styles.active : ""}
         >
-          {buttons.link || <Link />}
+          {realButtons.link}
         </button>
         <button
           onClick={() => editor.chain().focus().unsetLink().run()}
           disabled={!editor.isActive("link")}
         >
-          {buttons.unlink || <Unlink />}
+          {realButtons.unlink}
         </button>
       </div>
       <div>
-        <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 1 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 1 }) ? styles.active : ""
-          }
-        >
-          {buttons.heading1 || <Heading1 />}
-        </button>
-        <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 2 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 2 }) ? styles.active : ""
-          }
-        >
-          {buttons.heading2 || <Heading2 />}
-        </button>
-        <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 3 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 3 }) ? styles.active : ""
-          }
-        >
-          {buttons.heading3 || <Heading3 />}
-        </button>
-        <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 4 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 4 }) ? styles.active : ""
-          }
-        >
-          {buttons.heading4 || <Heading4 />}
-        </button>
-        <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 5 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 5 }) ? styles.active : ""
-          }
-        >
-          {buttons.heading5 || <Heading5 />}
-        </button>
-        <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 6 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 6 }) ? styles.active : ""
-          }
-        >
-          {buttons.heading6 || <Heading6 />}
-        </button>
+        {!!realButtons.heading1 && (
+          <button
+            onClick={() =>
+              editor.chain().focus().toggleHeading({ level: 1 }).run()
+            }
+            className={
+              editor.isActive("heading", { level: 1 }) ? styles.active : ""
+            }
+          >
+            {realButtons.heading1}
+          </button>
+        )}
+        {!!realButtons.heading2 && (
+          <button
+            onClick={() =>
+              editor.chain().focus().toggleHeading({ level: 2 }).run()
+            }
+            className={
+              editor.isActive("heading", { level: 2 }) ? styles.active : ""
+            }
+          >
+            {realButtons.heading2}
+          </button>
+        )}
+        {!!realButtons.heading3 && (
+          <button
+            onClick={() =>
+              editor.chain().focus().toggleHeading({ level: 3 }).run()
+            }
+            className={
+              editor.isActive("heading", { level: 3 }) ? styles.active : ""
+            }
+          >
+            {realButtons.heading3}
+          </button>
+        )}
+        {!!realButtons.heading4 && (
+          <button
+            onClick={() =>
+              editor.chain().focus().toggleHeading({ level: 4 }).run()
+            }
+            className={
+              editor.isActive("heading", { level: 4 }) ? styles.active : ""
+            }
+          >
+            {realButtons.heading4}
+          </button>
+        )}
+        {!!realButtons.heading5 && (
+          <button
+            onClick={() =>
+              editor.chain().focus().toggleHeading({ level: 5 }).run()
+            }
+            className={
+              editor.isActive("heading", { level: 5 }) ? styles.active : ""
+            }
+          >
+            {realButtons.heading5}
+          </button>
+        )}
+        {!!realButtons.heading6 && (
+          <button
+            onClick={() =>
+              editor.chain().focus().toggleHeading({ level: 6 }).run()
+            }
+            className={
+              editor.isActive("heading", { level: 6 }) ? styles.active : ""
+            }
+          >
+            {realButtons.heading6}
+          </button>
+        )}
       </div>
       <div>
-        <button
-          onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={editor.isActive("bulletList") ? styles.active : ""}
-        >
-          {buttons.bulletList || <List />}
-        </button>
-
-        <button
-          onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={editor.isActive("orderedList") ? styles.active : ""}
-        >
-          {buttons.orderedList || <ListOrdered />}
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-          className={editor.isActive("codeBlock") ? styles.active : ""}
-        >
-          {buttons.codeBlock || <Code2 />}
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleBlockquote().run()}
-          className={editor.isActive("blockquote") ? styles.active : ""}
-        >
-          {buttons.blockquote || <Quote />}
-        </button>
-        {/* <button
-          onClick={() => editor.chain().focus().setParagraph().run()}
-          className={editor.isActive("paragraph") ? styles.active : ""}
-        >
-          {buttons.paragraph || <Pilcrow />}
-        </button> */}
+        {!!realButtons.bulletList && (
+          <button
+            onClick={() => editor.chain().focus().toggleBulletList().run()}
+            className={editor.isActive("bulletList") ? styles.active : ""}
+          >
+            {realButtons.bulletList}
+          </button>
+        )}
+        {!!realButtons.orderedList && (
+          <button
+            onClick={() => editor.chain().focus().toggleOrderedList().run()}
+            className={editor.isActive("orderedList") ? styles.active : ""}
+          >
+            {realButtons.orderedList}
+          </button>
+        )}
+        {!!realButtons.codeBlock && (
+          <button
+            onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+            className={editor.isActive("codeBlock") ? styles.active : ""}
+          >
+            {realButtons.codeBlock}
+          </button>
+        )}
+        {!!realButtons.blockquote && (
+          <button
+            onClick={() => editor.chain().focus().toggleBlockquote().run()}
+            className={editor.isActive("blockquote") ? styles.active : ""}
+          >
+            {realButtons.blockquote}
+          </button>
+        )}
+        {/* {!!realButtons.paragraph && (
+          <button
+            onClick={() => editor.chain().focus().setParagraph().run()}
+            className={editor.isActive("paragraph") ? styles.active : ""}
+          >
+            {realButtons.paragraph}
+          </button>
+        )} */}
       </div>
       <div>
-        <button
-          onClick={() => editor.chain().focus().setHorizontalRule().run()}
-        >
-          {buttons.horizontalRule || <Minus />}
-        </button>
-
-        {/* <button onClick={() => editor.chain().focus().setHardBreak().run()}>
-        hard break // Like doing ctrl+enter
-      </button> */}
+        {!!realButtons.horizontalRule && (
+          <button
+            onClick={() => editor.chain().focus().setHorizontalRule().run()}
+          >
+            {realButtons.horizontalRule}
+          </button>
+        )}
       </div>
       <div>
-        <button
-          onClick={() => editor.chain().focus().undo().run()}
-          disabled={!editor.can().chain().focus().undo().run()}
-        >
-          {buttons.undo || <Undo />}
-        </button>
-        <button
-          onClick={() => editor.chain().focus().redo().run()}
-          disabled={!editor.can().chain().focus().redo().run()}
-        >
-          {buttons.redo || <Redo />}
-        </button>
+        {!!realButtons.undo && (
+          <button
+            onClick={() => editor.chain().focus().undo().run()}
+            disabled={!editor.can().chain().focus().undo().run()}
+          >
+            {realButtons.undo}
+          </button>
+        )}
+        {realButtons.redo && (
+          <button
+            onClick={() => editor.chain().focus().redo().run()}
+            disabled={!editor.can().chain().focus().redo().run()}
+          >
+            {realButtons.redo}
+          </button>
+        )}
       </div>
-      <div>
-        <button onClick={handleSave}>{buttons.save || <Save />}</button>
-      </div>
+      {!!realButtons.save && (
+        <div>
+          <button onClick={handleSave}>{realButtons.save}</button>
+        </div>
+      )}
     </div>
   ) : null;
 };

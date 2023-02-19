@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
-import Editor from "react-easy-wysiwyg";
+import Editor from "../../dist/index";
 
-import "react-easy-wysiwyg/styles.css";
+import "../../dist/styles.css";
 import styles from "./main.module.scss";
 
 const Page = () => {
@@ -10,6 +10,7 @@ const Page = () => {
     __html: `
       <h1>React Easy WYSIWYG Demo</h1>
       <p>A simple, convenient wrapper around Tiptap, using Lucide icons.</p>
+      <p>Change and save to update this view!</p>
     `,
   });
 

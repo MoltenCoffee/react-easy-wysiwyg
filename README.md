@@ -45,7 +45,7 @@ There are several options to customize the look of the Editor.
 
 #### Styles
 
-This is the easiest, and the one you'll probably always want. It can be as simple as redefining CSS Custom properties. The code below shows the default properties as registered on `:root`.
+This is the easiest, and the one you'll probably always want. It can be as simple as redefining CSS Custom properties.
 
 ```css
 .rew-container {
@@ -71,6 +71,12 @@ This is the easiest, and the one you'll probably always want. It can be as simpl
   --rew-highlight: rgba(255,126,219,.2);
   /* Background color of 'active' buttons */
   --rew-selected: rgba(255,126,219,.2)
+}
+
+@media (prefers-color-scheme: dark) {
+  .rew-container {
+    /* Same, but for dark mode users */
+  }
 }
 ```
 
@@ -123,7 +129,7 @@ const altButtons = {
 <Editor buttons={altButtons} />
 ```
 
-If any alt is not defined, the default icon will render.
+If any alt is not defined, the default icon will render. To disable, just set it to any falsy value like `false` or `null`.
 
 The content can be any _node_ that react can render (which is basically anything). No logic for rendering is provided, so if using React components, you must pass the rendered result, not the component itself:
 
