@@ -47,9 +47,32 @@ Due to the inherently large size of this module, it's highly recommended to lazy
 
 If using the `app` directory, available in Next.js 13, you'll need to [mark it's parent as a Client Component](https://beta.nextjs.org/docs/rendering/server-and-client-components#convention).
 
+## API
+
+| Prop            | Type                       | Default                   | Description                                                                                                                                                                         |
+| --------------- | -------------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `content`       | `object` \| `string`       |                           | The content, either a JSON object as exported by tiptap, or an HTML document                                                                                                        |
+| `onSave`        | `(string \| object) => {}` |                           | On save, this function receives one argument, the `content`. This is either HTML (string) or an object, based on the `exportHTML` prop                                              |
+| `exportHTML`    | `boolean`                  | `false`                   | If set to true, onSave receives an HTML string instead of an object                                                                                                                 |
+| `editable`      | `boolean`                  | `true`                    | If set to false, the editor will render `content` without editing capabilities. It will still import all moduled needed for editing, however, so a dedicated solution is preferred. |
+| `showWordCount` | `boolean`                  | `true`                    | Whether or not to show the wordcount in the lower right corner                                                                                                                      |
+| `className`     | `string`                   |                           | Allows passing a custom className to the wrapper (which already has the `rew-wrapper` class, as well as some default styling)                                                       |
+| `buttons`       | `object`                   | [`buttons {}` ](#buttons) | Allows customizing displayed buttons. See [buttons](#buttons)                                                                                                                       |
+| `labels`        | `object`                   | [`labels {}`](#labels)    | Allows changing displayed text. See [labels](#labels)                                                                                                                               |
+| `onLinkClick`   | `(e) => {}`                | See description           | By default, ignores clicked links, unless `cmd` or `ctrl` is pressed.                                                                                                               |
+
+### `labels`
+
+```js
+{
+  url: "URL",
+  save: "Save",
+}
+```
+
 ### Customizing
 
-There are several options to customize the look of the Editor.
+There are several options to customize the look of the Editor. For larger changes, you're better off building an interface for tiptap yourself.
 
 #### Styles
 
