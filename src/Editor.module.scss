@@ -81,6 +81,7 @@ $dark-selected: $highlight;
   padding: 0.25rem;
   border-bottom: 2px solid var(--rew-accent);
   align-items: center;
+  justify-content: space-between;
 
   div {
     display: flex;
