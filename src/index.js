@@ -60,7 +60,7 @@ const Editor = ({
   // }, [inputRef.current]);
 
   const handleSave = useCallback(() => {
-    onSave(exportHTML ? editor.getHTML() : editor.getJSON());
+    onSave?.(exportHTML ? editor.getHTML() : editor.getJSON());
   }, [exportHTML, editor, onSave]);
 
   const setLink = useCallback(

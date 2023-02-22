@@ -1,6 +1,6 @@
 # React Easy WYSIWYG
 
-A simple, convenient frontend for [tiptap](https://tiptap.dev/), which itself builts upon [ProseMirror](https://prosemirror.net/).
+A simple, convenient frontend for [tiptap](https://tiptap.dev/), which itself builts upon [ProseMirror](https://prosemirror.net/). Outputs HTML or JSON.
 
 Icons from [Lucide icons](https://lucide.dev/).
 
