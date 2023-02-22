@@ -67,6 +67,7 @@ $dark-selected: $highlight;
 }
 
 .container {
+  position: relative;
   margin: 1rem 0;
   border-radius: 0.5rem;
   border: 2px solid var(--rew-accent);
@@ -184,4 +185,15 @@ $dark-selected: $highlight;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+.wordCounter {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: var(--rew-accent);
+  color: var(--rew-background-color);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem 0 0 0;
+  font-size: 0.8rem;
 }

@@ -15,6 +15,7 @@ const config = {
     "tiptap-unique-id",
     "@tiptap/extension-link",
     "@tiptap/extension-underline",
+    "@tiptap/extension-character-count",
     "@tiptap/react",
     "@tiptap/starter-kit",
     "lucide-react",

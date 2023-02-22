@@ -6,6 +6,12 @@ Icons from [Lucide icons](https://lucide.dev/).
 
 ![screenshot from the React-easy-wysiwyg demo](demo.png)
 
+Implemented modules are:
+
+- The entire TipTap Starterkit
+- Link
+- Underline
+
 ## Why?
 
 Tiptap, by design, only provides the barebones tools to built a text editor. For my personal website I built a wrapper, and decided I might as well release it for others to use.
@@ -36,6 +42,8 @@ const App = () => {
 ```
 
 ### Next.js
+
+Due to the inherently large size of this module, it's highly recommended to lazy load the module in your page, with [`next/dynamic`](https://nextjs.org/docs/advanced-features/dynamic-import) for example.
 
 If using the `app` directory, available in Next.js 13, you'll need to [mark it's parent as a Client Component](https://beta.nextjs.org/docs/rendering/server-and-client-components#convention).
 

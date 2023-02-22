@@ -3,6 +3,7 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Link from "@tiptap/extension-link";
 import Underline from "@tiptap/extension-underline";
+import CharacterCount from "@tiptap/extension-character-count";
 import UniqueId from "tiptap-unique-id";
 
 import Menu from "./Menu";
@@ -15,6 +16,7 @@ const Editor = ({
   exportHTML = false,
   editable = true,
   inheritStyles = true,
+  showWordCount = true,
   buttons = {},
 }) => {
   const editor = useEditor({
@@ -33,6 +35,7 @@ const Editor = ({
         ],
         createId: () => window.crypto.randomUUID(),
       }),
+      ...(showWordCount ? [CharacterCount.configure()] : []),
     ],
     editable,
     content,
@@ -47,7 +50,15 @@ const Editor = ({
       {editable && (
         <Menu editor={editor} buttons={buttons} handleSave={handleSave} />
       )}
-      <EditorContent editor={editor} className={`${styles.wrapper} rew-wrapper`} />
+      <EditorContent
+        editor={editor}
+        className={`${styles.wrapper} rew-wrapper`}
+      />
+      {editable && showWordCount && (
+        <div className={styles.wordCounter}>
+          {editor?.storage.characterCount.words()}
+        </div>
+      )}
     </div>
   );
 };
