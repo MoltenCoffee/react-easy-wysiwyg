@@ -17,7 +17,9 @@ const Editor = ({
   editable = true,
   inheritStyles = true,
   showWordCount = true,
+  className,
   buttons = {},
+  ...rest
 }) => {
   const editor = useEditor({
     extensions: [
@@ -52,7 +54,10 @@ const Editor = ({
       )}
       <EditorContent
         editor={editor}
-        className={`${styles.wrapper} rew-wrapper`}
+        className={`${styles.wrapper} rew-wrapper${
+          className ? ` ${className}` : ""
+        }`}
+        {...rest}
       />
       {editable && showWordCount && (
         <div className={styles.wordCounter}>
