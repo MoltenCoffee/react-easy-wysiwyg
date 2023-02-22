@@ -198,3 +198,24 @@ $dark-selected: $highlight;
   border-radius: 0.25rem 0 0 0;
   font-size: 0.8rem;
 }
+
+.urlBar {
+  position: absolute;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+
+  span, input {
+    margin-right: 0.5rem;
+  }
+
+  span {
+    font-weight: 600;
+  }
+
+  background-color: var(--rew-accent);
+  color: var(--rew-background-color);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0 0 0.25rem 0;
+}

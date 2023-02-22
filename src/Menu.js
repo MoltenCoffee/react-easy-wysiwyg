@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react";
+import { useMemo } from "react";
 import {
   Bold,
   Code,
@@ -51,24 +51,7 @@ const defaultButtons = {
   save: <Save />,
 };
 
-const Menu = ({ editor, buttons = {}, handleSave, ...rest }) => {
-  const setLink = useCallback(() => {
-    const previousUrl = editor.getAttributes("link").href;
-    const url = window.prompt("URL", previousUrl);
-
-    // cancelled
-    if (url === null) return;
-
-    // empty
-    if (url === "") {
-      editor.chain().focus().extendMarkRange("link").unsetLink().run();
-      return;
-    }
-
-    // update link
-    editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
-  }, [editor]);
-
+const Menu = ({ editor, buttons = {}, handleSave, handleLink, ...rest }) => {
   const realButtons = useMemo(
     () => ({ ...defaultButtons, ...buttons }),
     [buttons]
@@ -116,7 +99,7 @@ const Menu = ({ editor, buttons = {}, handleSave, ...rest }) => {
           {realButtons.code}
         </button>
         <button
-          onClick={setLink}
+          onClick={handleLink}
           className={editor.isActive("link") ? styles.active : ""}
         >
           {realButtons.link}
