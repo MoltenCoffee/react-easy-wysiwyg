@@ -114,7 +114,6 @@ const Editor = ({
           buttons={buttons}
           handleLink={handleLink}
           handleSave={handleSave}
-          labels={labels}
         />
       )}
       {urlFieldState && (
