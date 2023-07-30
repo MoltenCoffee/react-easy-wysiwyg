@@ -1,6 +1,6 @@
 {
   "name": "react-easy-wysiwyg",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "A simple, convenient frontend for tiptap.",
   "author": "Thijs-Jan Huisman",
   "license": "MIT",
@@ -19,6 +19,7 @@
     "./styles.css": "./dist/styles.css"
   },
   "scripts": {
+    "prebuild": "rimraf dist",
     "build": "rollup -c"
   },
   "dependencies": {
@@ -27,7 +28,7 @@
     "@tiptap/extension-underline": "^2.0.0-beta.217",
     "@tiptap/react": "^2.0.0-beta.217",
     "@tiptap/starter-kit": "^2.0.0-beta.217",
-    "lucide-react": "^0.125.0",
+    "lucide-react": "^0.263.1",
     "tiptap-unique-id": "^1.0.0"
   },
   "devDependencies": {
@@ -35,10 +36,10 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "rimraf": "^4.1.2",
+    "rimraf": "^5.0.1",
     "rollup": "^3.12.1",
     "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-swc3": "^0.8.0",
+    "rollup-plugin-swc3": "^0.9.1",
     "sass": "^1.58.0"
   },
   "peerDependencies": {
