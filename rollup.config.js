@@ -1,4 +1,4 @@
-import { swc } from "rollup-plugin-swc3";
+import { jsx } from "react/jsx-runtime";
 import postcss from "rollup-plugin-postcss";
 
 const config = {
@@ -9,6 +9,7 @@ const config = {
     format: "esm",
     // preserveModules: true,
   },
+  jsx: "react",
   external: [
     "react",
     "react-dom",
@@ -28,16 +29,6 @@ const config = {
       minimize: true,
       autoModules: true,
       use: ["sass"],
-    }),
-    swc({
-      minify: true,
-      jsc: {
-        transform: { react: { runtime: "automatic" } },
-        target: "es2019",
-        parser: {
-          jsx: true,
-        },
-      },
     }),
   ],
 };

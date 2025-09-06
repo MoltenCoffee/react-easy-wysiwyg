@@ -1,6 +1,6 @@
 {
   "name": "react-easy-wysiwyg",
-  "version": "2.0.0",
+  "version": "3.4.1",
   "description": "A simple, convenient frontend for tiptap.",
   "author": "Thijs-Jan Huisman",
   "license": "MIT",
@@ -23,27 +23,27 @@
     "build": "rollup -c"
   },
   "dependencies": {
-    "@tiptap/extension-character-count": "^3.0.0",
-    "@tiptap/extension-link": "^3.0.0",
-    "@tiptap/extension-underline": "^3.0.0",
-    "@tiptap/react": "^3.0.0",
-    "@tiptap/starter-kit": "^3.0.0",
+    "@tiptap/extension-character-count": "^3.4.1",
+    "@tiptap/extension-link": "^3.4.1",
+    "@tiptap/extension-underline": "^3.4.1",
+    "@tiptap/react": "^3.4.1",
+    "@tiptap/starter-kit": "^3.4.1",
     "lucide-react": ">=0.263.1",
-    "tiptap-unique-id": "^2.0.0"
+    "tiptap-unique-id": "^3.4.1"
   },
   "devDependencies": {
-    "eslint": "^8.34.0",
+    "esbuild": "^0.25.9",
+    "eslint": "^9.35.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "rimraf": "^6.0.1",
     "rollup": "^4.0.2",
     "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-swc3": "^0.11.2",
-    "sass": "^1.58.0"
+    "sass-embedded": "^1.92.1"
   },
   "peerDependencies": {
-    "react": "^16.0.0 || ^17.0.0 || ^18.0.0",
-    "react-dom": "^16.0.0 || ^17.0.0 || ^18.0.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }
